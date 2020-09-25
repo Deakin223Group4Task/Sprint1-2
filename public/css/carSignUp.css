@@ -1,0 +1,54 @@
+.btn-outline-primary{
+    width: auto;
+    height: auto;
+    min-width:170px;
+    min-height: 45px;
+    margin-bottom: 30px;
+    border-radius: 9px;
+    border-color: rgb(235, 86, 49);
+    border-top-color:rgb(241, 185, 81) ;
+    border-left-color:rgb(241, 185, 81) ;
+    
+    font-size: large;
+    font-weight: bold;
+    color:rgb(241, 185, 81);
+    background-color:rgb(61, 61, 61);
+  
+}
+.btn-outline-primary:hover {
+    background-color: rgb(235, 86, 49);
+    border-color: rgb(235, 86, 49);
+    border-top-color:rgb(241, 185, 81) ;
+    border-left-color:rgb(241, 185, 81) ;
+}
+#bigbox{
+    min-width: 450px;
+    min-height: 320px;
+    margin-top: 200px;
+
+    border-width: thick;
+    border-style: solid;    
+    border-left-color: rgb(241, 185, 81);
+    border-top-color: rgb(245, 212, 153);
+    border-right-color: rgb(116, 33, 0);
+    border-bottom-color:  rgb(65, 20, 2);
+    
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 13px;
+    text-align: center;
+    background-color: rgba(194, 194, 194, 0.164);}
+    .form-control2{
+        margin-left: 10%;
+        margin-bottom: 20px;    
+        width: 80%; 
+       
+    }
+    body{
+        background-color:rgb(46, 45, 45);
+        background-image: url(../image/bgimg.jpg);
+        background-repeat:no-repeat ;
+        background-size:100% 100%;
+        background-attachment: fixed;
+        color: aliceblue;
+    }   
