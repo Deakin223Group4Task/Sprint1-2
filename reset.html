@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" media="screen" href="css/reset.css" rel="stylesheet">
+</head>
+<body>
+    <p>Please input your email and name to confirm personal identity</p><br>
+    <form action="/reset" method="POST">
+        <label for="email">Email*</label>
+        <input type="text" name="email">
+        <label for="name">Your name*</label>
+        <input  type="text" name="name">
+        <label> Your new password </label>
+        <input name="password" type="password"  placeholder="">
+    </form>
+</body>
+</html>
