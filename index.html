@@ -4,41 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello</title>
-
+    <link type="text/css" href="/public/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" media="screen" href="/public/css/index.css" rel="stylesheet">
 </head>
 <body>
-    <h1>CheckYourCar</h1>
-
-    <!--导航栏-->
-    <ul>
-		<li>Home</li>
-		<li>Services</li>
-		<li>Contact Us</li>
-    </ul>
-    
-    <img src="public/image/profile.png">
-    <p>UserName</p>
-
-    <h2>Hi, "UserName"</h2>
-
-    <p>Your cars:</p>
-
-    <p>Car 1:</p>
-    <button href="#">Query</button>
+    <div class="Header">
+        <div class="upheader">
+        <div class="leftHeader">
+            <p  class="text" style="margin-left: 80px; color: rgb(219, 198, 105);">Check</p>
+            <p  class="text" style="color: black;">Your</p>
            
-    <p>Car 2:</p>
-    <button href="#">Query</button>
+        </div>
+        <!--导航栏-->
+        <div class="rightHeader">
+            <ul>
+                <li style="margin-right: 13%;">Contact Us</li>
+                <li>Services</li>
+                <li>Home</li>
+            </ul>
+        </div>
+        </div>
+        <p  class="btext" style="color: rgb(219, 198, 105);">Car</p>
+        </div>
+    </div>
+    <div calss ="container">
+        <div class="row" style="background-color: cornsilk;">
+            <div class="col-md-1"  margin-left: 30px;" ></div>
+            <div class="col-md-8" style="background-color: rgb(243, 243, 243);">
+                <div class="pic">
+                    <img src="public/image/profile.png" style="width: 250px;height: 250px;">  
+                     <p style="font-size: 27px;color: coral;">UserName</p>
+                </div>
+                <div class="textpart">
+                    <div class="tp" style="width: 100%;">
+                        <h2 id="first" >Hi,</h2> 
+                        <h2 style="color: coral;">"</h2>
+                        <h2>UserName</h2> 
+                        <h2 style="color: coral;">"</h2>
+                    </div>
+                    <div class="tp2">
+                        <p class="intext">Your cars:</p>
+                        <p class="intext">Car 1:</p>
+                        <button href="#" class="btn">Query</button>
+                        <p class="intext">Car 2:</p>
+                        <button href="#" class="btn">Query</button>
+                        <a href="/carSignUp" ><button class="btn buttonbig">Register a new car</button> </a><!--class用button的class-->   
+                    </div>
+                </div>    
+            </div>
+            <div class="col-md-1" style="background-color:rgb(243, 243, 243);"></div>
+        </div>
+        
+            <div class="col-sm-8" id="lastbox"><!--搜索某made的某model的表单-->
+                <form action="/search" method="POST">
 
-    <a href="/carSignUp">Register a new car</a><!--class用button的class-->
+                    <input type="text" id="make" placeholder="make" name="make" required class="inputplace">
+                    <input type="text" id="model" placeholder="model" name="model" required class="inputplace" >
+                    <button type="submit" class="btn lastbtn">Search</button>
 
-    <!--搜索某made的某model的表单-->
-    <form action="/search" method="POST">
+                </form>
+            </div>           
 
-        <input type="text" id="make" placeholder="make" name="make" required >
-        <input type="text" id="model" placeholder="model" name="model" required>
-        <button type="submit" >Search</button>
-
-    </form>
+    </div>
+ 
     
 </body>
 </html>
