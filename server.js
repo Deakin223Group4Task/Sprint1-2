@@ -17,7 +17,7 @@ const flash = require('express-flash');
 var nodemailer = require('nodemailer');
 var passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy
-var userEmail = '2640854417@qq.com';
+
 
 app.use(express.static("public"))
 app.use(cookieParser());
@@ -123,41 +123,24 @@ app.post('./problems',(req,res)=>{
         Car.update({problems:problems}).then(result=>{
             return;
         })
-    })
-
-    let transport = nodemailer.createTransport({
-        host:"smtp.qq.com",
-        secureConnection:true,
-        port:465,
-        auth: {
-          user:userEmail,
-          pass:"kbojopbuuismeabb"
-        }
-      });
-    
+    })  
     let car_arr = Car.find({vehicleModel:model,vehicleType:type},{"_id":1})
     let user_arr =new Array();
     for(key in car_arr){
-        user_arr.push(UClink.find({_id:key},{"_id":1}))
+        user_arr.push(Link.find({_id:key},{"_id":1}))
     }
     let email_arr = new Array();
     for(key in user_arr){
         email_arr.push(User.find({_id:user_arr},{"email":1}))
     }
-    
-    var mailOptions = {
+    mail.send({
+        from: '"SIT313" <sit223.group4@gmail.com>',
         to: email_arr,
-        from: userEmail,
         subject: 'Car Problems',
         text: 'You are receiving this because we have found the new problems of your car.\n' +
-          'Please check the problems:\n' +req.body.problems
-      }; 
-    transport.sendMail(mailOptions, function(error,info) {
-        if(error){
-          return console.log(error);
-      }
-      else{ console.log('Message sent: ' + info.response);}
-      });
+          'Please check the problems:\n' +req.body.problems,
+    });
+    res.send("Reset password email has been sent")
 })
 
 app.post('/search', async(req,res)=>{
