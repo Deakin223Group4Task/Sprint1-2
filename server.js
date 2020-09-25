@@ -52,11 +52,11 @@ passport.deserializeUser(function (user, done) {
     });
 });
 
-app.get('/', (req, res) => {
+app.get('/login', (req, res) => {
     if (req.isAuthenticated()) {
-        res.sendFile(__dirname + "/Blank.html")//如果已授权就直接登入
+        res.sendFile(__dirname + "/index.html")//如果已授权就直接登入
     } else {
-        res.sendFile(__dirname + '/index.html')//默认发送登录页
+        res.sendFile(__dirname + '/login.html')//默认发送登录页
     }
 })
 
@@ -133,11 +133,11 @@ app.post('/login',(req,res)=>{
             const Match = bcrypt.compareSync(Password,user.InputPassword);//比较密码是否相同
            if(Match){
                if(!req.body.savepsw){
-                res.sendFile(__dirname + "/Blank.html")//密码相同的情况下，跳转至登录后的用户界面
+                res.sendFile(__dirname + "/index.html")//密码相同的情况下，跳转至登录后的用户界面
                 return;
                }else{
                 passport.authenticate('local')(req, res, () => {
-                    res.redirect('/')
+                    res.redirect('/login')
                 })
                }           
            }
@@ -177,7 +177,7 @@ app.post('/register', (req, res) => {
     user.save((err) => {
         if (err) { console.log(err); res.send("Fail to register") }
         else{
-            res.redirect('/')
+            res.redirect('/login')
         }
     })
 })

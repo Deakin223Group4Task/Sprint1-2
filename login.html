@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIT223</title>
+    <link type="text/css" href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" media="screen" href="css/index.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
+              <a class="navbar-brand" href="#" style="color: rgb(241, 185, 81);">CheckYourCar</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#">Part 1 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Part 2</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Part 3</a>
+                  </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                  <button type="submit" id="small">Search</button>
+                </form>
+              </div>
+            </nav>
+          </header>
+          <form action="/login" method="POST">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div id="bigbox" >
+                <h1 style="color: rgb(241, 185, 81); text-shadow: 5px 2px 1px rgb(87, 21, 5);">Sign in CheckYourCar</h1><br>
+                <input name="email" id="email" class="form-control form-control2" type="text" placeholder="Email" aria-label="Search">
+                
+                <input name="password" id="password" class="form-control form-control2" type="password" placeholder="Password" aria-label="Search">
+                <a href="/register">
+                    <button class="btn-outline-primary" >Sign up</button>
+                </a>
+                <a href="/forgetpassword">
+                    <button class="btn-outline-primary" >Forgot password</button>
+                </a><br>
+                <label id="save">
+                    <input type="checkbox" name="savepsw" class="was-validated"> &#x0020;Save password
+                </label>
+                <div class="col-md-12" style="margin-top: 20px;margin-bottom: -25px;">
+                  <!--register button-->
+                          <button type="submit" class="btn-outline-primary">Log in</button>
+                  </div>
+            </div>
+          </form>
+        </div>
+       
+    </div>
+    
+</body>
+</html>
