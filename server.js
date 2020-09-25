@@ -14,8 +14,10 @@ const saltRounds = 10;
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('express-flash');
+var nodemailer = require('nodemailer');
 var passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy
+var userEmail = '2640854417@qq.com';
 
 app.use(express.static("public"))
 app.use(cookieParser());
@@ -112,6 +114,52 @@ app.post('/carSignUp', (req,res,next)=>{
 }
 )
 
+app.post('./problems',(req,res)=>{
+    let model = req.body.model;
+    let type = req.body.type;
+    let problems = req.body.problems;
+    let vin = req.body.vin;
+    Car.findOne({vin:vin},(err,item)=>{
+        Car.update({problems:problems}).then(result=>{
+            return;
+        })
+    })
+
+    let transport = nodemailer.createTransport({
+        host:"smtp.qq.com",
+        secureConnection:true,
+        port:465,
+        auth: {
+          user:userEmail,
+          pass:"kbojopbuuismeabb"
+        }
+      });
+    
+    let car_arr = Car.find({vehicleModel:model,vehicleType:type},{"_id":1})
+    let user_arr =new Array();
+    for(key in car_arr){
+        user_arr.push(UClink.find({_id:key},{"_id":1}))
+    }
+    let email_arr = new Array();
+    for(key in user_arr){
+        email_arr.push(User.find({_id:user_arr},{"email":1}))
+    }
+    
+    var mailOptions = {
+        to: email_arr,
+        from: userEmail,
+        subject: 'Car Problems',
+        text: 'You are receiving this because we have found the new problems of your car.\n' +
+          'Please check the problems:\n' +req.body.problems
+      }; 
+    transport.sendMail(mailOptions, function(error,info) {
+        if(error){
+          return console.log(error);
+      }
+      else{ console.log('Message sent: ' + info.response);}
+      });
+})
+
 app.post('/search', async(req,res)=>{
     const car = await Car.findOne({
         vehicleType:req.body.make,
@@ -128,6 +176,7 @@ app.post('/login',(req,res)=>{
 
     let Password = req.body.password;//获取表单中的密码
     let value = req.body.email;//获取表单中的邮箱
+        
     User.findOne({email:value},(err,user)=>{//数据库中寻找是否存在这个用户
         if(user){
             const Match = bcrypt.compareSync(Password,user.InputPassword);//比较密码是否相同
@@ -161,6 +210,30 @@ app.post('/register', (req, res) => {
     password = bcrypt.hashSync(password, salt)
     var Cpassword = req.body.confirmPassword
     Cpassword = bcrypt.hashSync(Cpassword, salt)
+    const data = {
+        members:[{
+            email_address:req.body.email,
+            status:"subscribed",
+            merge_fields:{
+                FNAME:req.body.firstname,
+                LNAME:req.body.lastname
+            }
+        }]
+    }
+    jsonData = JSON.stringify(data)
+    const url = "https://us17.api.mailchimp.com/3.0/lists/bf22be2a86"
+    const options = {
+        method:"POST",
+        auth:"azi:ee958d668174a5df1e063007c1ae5027-us17"
+    }
+    https.req(url,options,(response)=>{
+        response.on("data",(data)=>{
+            console.log(JSON.parse(data))
+        })
+    })
+
+    request.write(jsonData)
+    request.end()
     const user = new User({
         firstname:req.body.firstname,
         lastname:req.body.lastname,
