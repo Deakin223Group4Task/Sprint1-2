@@ -1,9 +1,9 @@
 const express = require("express")
+const app = express()
 const bodyParser = require("body-parser")
 const Car = require("./models/car");
 const User = require("./models/user");
 const Link=require("./models/UClink");
-const app = express()
 const mongoose = require("mongoose")
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static("public"))
@@ -16,8 +16,6 @@ const session = require('express-session');
 const flash = require('express-flash');
 var passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy
-
-const app = express()
 
 app.use(express.static("public"))
 app.use(cookieParser());
@@ -114,7 +112,7 @@ app.post('/carSignUp', (req,res,next)=>{
 }
 )
 
-app.post('/search', (req,res)=>{
+app.post('/search', async(req,res)=>{
     const car = await Car.findOne({
         vehicleType:req.body.make,
         vehicleModel:req.body.model
@@ -163,7 +161,7 @@ app.post('/register', (req, res) => {
     password = bcrypt.hashSync(password, salt)
     var Cpassword = req.body.confirmPassword
     Cpassword = bcrypt.hashSync(Cpassword, salt)
-    const newUser = new User({
+    const user = new User({
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         email:req.body.email,
@@ -176,11 +174,11 @@ app.post('/register', (req, res) => {
         address2:req.body.address2,
         number:req.body.number
     })
-    newUser
-    .save()
-    .catch((err) => console.log(err));
     user.save((err) => {
         if (err) { console.log(err); res.send("Fail to register") }
+        else{
+            res.redirect('/')
+        }
     })
 })
 

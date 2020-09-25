@@ -40,9 +40,9 @@
             <div class="col-md-4"></div>
             <div id="bigbox" >
                 <h1 style="color: rgb(241, 185, 81); text-shadow: 5px 2px 1px rgb(87, 21, 5);">Sign in UrCar</h1><br>
-                <input class="form-control form-control2" type="text" placeholder="Email" aria-label="Search">
+                <input name="email" id="email" class="form-control form-control2" type="text" placeholder="Email" aria-label="Search">
                 
-                <input class="form-control form-control2" type="text" placeholder="Password" aria-label="Search">
+                <input name="password" id="password" class="form-control form-control2" type="password" placeholder="Password" aria-label="Search">
                 <a href="/register">
                     <button class="btn-outline-primary" >Sign up</button>
                 </a>
@@ -52,8 +52,14 @@
                 <label id="save">
                     <input type="checkbox" name="savepsw" class="was-validated"> &#x0020;Save password
                 </label>
+                <div class="col-md-12" style="margin-top: 20px;margin-bottom: -25px;">
+                  <!--register button-->
+                          <button type="submit" class="btn-outline-primary">Log in</button>
+                  </div>
             </div>
+            
         </div>
+       
     </div>
     
 </body>
